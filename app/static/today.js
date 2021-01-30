@@ -7,3 +7,5 @@ var datetime = "Acesso: " + today.getDate() + "/"
                 + today.getSeconds();
 
 document.write(datetime);
+
+
