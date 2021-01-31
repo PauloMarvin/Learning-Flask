@@ -2,14 +2,13 @@ let input = document.querySelector('#input')
 let textbox = document.querySelector('#caixa_texto')
 let btnclear = document.querySelector('#clear')
 
-
-
 input.addEventListener('change', () => {
     let files = input.files;
 
     if (files.length === 0) return;
 
     const file = files[0];
+
 
     let reader = new FileReader();
 
@@ -32,6 +31,7 @@ input.addEventListener('change', () => {
 
 btnclear.addEventListener('click', () => {
     textbox.value = '';
+
 
 });
 

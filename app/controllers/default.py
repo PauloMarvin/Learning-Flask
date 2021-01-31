@@ -1,5 +1,6 @@
-from flask import render_template
+from flask import render_template,request
 from app import app
+from ..models import usuario_teste
 
 @app.route('/')
 @app.route('/index')
@@ -11,9 +12,23 @@ def atividade1():
     return render_template('atividade1.html')
 
 
-@app.route('/atividade2-WR')
+@app.route('/atividade2-WR',methods=['POST', 'GET'])
 def reading_and_writing():
-    return render_template('requisitionsWR.html')
+
+
+    if request.method == 'GET':
+        return render_template('requisitionsWR.html')
+
+    elif request.method == 'POST':
+        text_test = request.form.get('texto_caixa')
+        return '<h1>O texto {} foi enviado'.format(text_test)
+
+
+
+
+
+
+
 
 @app.route('/atividade2-load')
 def load():
@@ -23,4 +38,5 @@ def load():
 @app.route('/atividade2-conteudo')
 def conteudo():
     return render_template('content.html')
+
 

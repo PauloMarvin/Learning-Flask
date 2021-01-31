@@ -2,6 +2,7 @@
 
 {% block head %}
 
+<link rel="stylesheet" href="../static/css/div.css">
 
 {% endblock %}
 
@@ -12,8 +13,28 @@
 
 <h1>Página requisitionsWR.html</h1>
 
+
 <script src="../static/js/redirect.js"></script>
+<script src="../static/js/change_text.js"></script>
 
-<button type="button" onclick="pageRedirect('/index')">Voltar para index</button>
 
+{{text_test}}
+
+
+<div>
+    <button type="button" onclick="pageRedirect('/index')">Voltar para index</button>
+    <button id="read" type="button" onclick="change_text()" >LER</button>
+</div>
+
+<div>
+    <textarea id="caixa_texto" placeholder="Texto aparecerá aqui" readonly cols="15" rows="10"></textarea>
+</div>
+
+<div>
+    <form method="post">
+    Texto para gravação <input type="text" name="texto_caixa" id="">
+                        <input type="submit" value="ESCREVER">
+
+    </form>
+</div>
 {% endblock %}
