@@ -1,6 +1,6 @@
 const button = document.getElementById("read")
 const text_box = document.getElementById("caixa_texto")
-const form = document.getElementById("form")
+
 
 button.addEventListener('click',function (e){
 

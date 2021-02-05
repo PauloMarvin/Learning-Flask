@@ -2,7 +2,6 @@ from flask import render_template,request
 from app import app
 from ..models import usuario_teste
 
-mensage_teste = ""
 
 @app.route('/')
 @app.route('/index')
@@ -42,5 +41,13 @@ def load():
 @app.route('/atividade2-conteudo')
 def conteudo():
     return render_template('content.html')
+
+@app.route('/pagina-login')
+def pagina_login():
+    return render_template('login-page.html')
+
+@app.route('/pagina-protegida')
+def pagina_protegida():
+    return render_template('pagina-protegida.html')
 
 

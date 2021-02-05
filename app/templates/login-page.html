@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<link rel="stylesheet" href="../static/css/login.css">
+
+{% endblock %}
+
+
+
+{% block body %}
+
+<style type="text/css">
+    form{
+        width: 600px;
+        margin: 200px auto;
+    }
+    div{
+        width: 100%;
+        margin: 15px auto;
+    }
+    label{
+        display: block;
+        padding: 20px;
+        font-size: 25px;
+
+    }
+    input{
+        width: 96%;
+        padding: 10px;
+        border: 1px solid #797979;
+        font-size: 20px;
+        margin-left: 20px;
+        border-radius: 3px;
+    }
+    button{
+        margin: 20px;
+        padding: 10px;
+        width: 100px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        color: whitesmoke;
+        background: royalblue;
+    }
+</style>
+
+
+<title>Login page</title>
+
+
+<form action="pagina-protegida.html" method="post">
+    <div>
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" placeholder="Usuário">
+        <span></span>
+    </div>
+
+    <div>
+        <label for="senha">Senha</label>
+        <input type="text" id="senha" placeholder="Senha">
+        <span></span>
+    </div>
+    <button id="log-in" onclick="pageRedirect('/pagina-protegida')">Logar</button>
+
+    <script src="../static/js/post_request.js"></script>
+
+</form>
+
+{% endblock %}
