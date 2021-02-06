@@ -22,6 +22,7 @@ def reading_and_writing():
 
     elif request.method == 'POST':
         text_test = request.form.get('texto')
+
         return '<h1>O texto {} foi enviado'.format(text_test)
 
 
