@@ -51,20 +51,22 @@
 
 <title>Login page</title>
 
+ {{erro}}
 
-<form action="pagina-protegida.html" method="post">
+
+<form action="/login" method="post" >
     <div>
         <label for="usuario">Usuário</label>
-        <input type="text" id="usuario" placeholder="Usuário">
+        <input type="username" id="usuario" name="usuario" placeholder="Usuário">
         <span></span>
     </div>
 
     <div>
         <label for="senha">Senha</label>
-        <input type="text" id="senha" placeholder="Senha">
+        <input type="password" id="senha" name="senha" placeholder="Senha">
         <span></span>
     </div>
-    <button id="log-in" onclick="pageRedirect('/pagina-protegida')">Logar</button>
+    <input type="submit" value="logar">
 
     <script src="../static/js/post_request.js"></script>
 

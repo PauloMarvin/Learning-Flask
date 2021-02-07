@@ -1,4 +1,5 @@
-from flask import render_template,request,jsonify,make_response,Flask
+from flask import render_template,request,jsonify,make_response,Flask,Response
+import flask
 import jwt
 import datetime
 from app import app
@@ -8,7 +9,8 @@ from ..models import usuario_teste
 def token_validation(f):
     @wraps(f)
     def decorated(*args,**kwargs):
-        token = request.args.get('token')
+        token = request.headers.get('Authorization')
+        print(token)
 
         if not token:
             return ({'mensages': 'Sem token'}),403
@@ -66,26 +68,42 @@ def load():
 def conteudo():
     return render_template('content.html')
 
-@app.route('/pagina-login')
+@app.route('/pagina-login',methods=['POST', 'GET'])
+def autenticacao():
+    if request.method == 'GET':
+        return render_template('login-page.html')
+
+
+
+@app.route('/login',methods=['POST'])
 def login():
-    auth = request.authorization
+    user = request.form.get('usuario')
+    senha = request.form.get('senha')
 
-    if auth and auth.password == 'password' and auth.username =='paulo':
-        token = jwt.encode({'user' : auth.username, 'exp':datetime.datetime.utcnow()+datetime.timedelta(seconds=5)},app.config['SECRET_KEY'])
+    erro = None
 
-        return jsonify({'token': token.decode('UTF-8')})
+    if  senha == '123' and user =='paulo1':
+        token = jwt.encode({'user' : user, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=5)},app.config['SECRET_KEY'])
+        response = make_response(render_template('pagina-protegida.html'))
+        response.headers['authorization'] = 'Bearer ' + token.decode('UTF-8')
+        return render_template('pagina-protegida.html', token = token.decode('UTF-8'))
 
-    return make_response('teste',401,{'WWW-Authenticate':'Basic realm="Login Required"'})
-
-
-
-
+    else:
+        erro = 'Usuário ou senho errados'
+        return render_template('login-page.html',erro = erro)
 
 
 @app.route('/pagina-protegida')
 @token_validation
 def pagina_protegida():
     return render_template('pagina-protegida.html')
+
+@app.route('/teste')
+@token_validation
+def teste():
+    return {'name' : 'paulo',
+            'age': '21',
+            'country': 'Brazil'}
 
 
 
