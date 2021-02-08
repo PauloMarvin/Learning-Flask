@@ -33,11 +33,13 @@ def index():
     return render_template('index.html')
 
 @app.route('/atividade1')
+@token_validation
 def atividade1():
     return render_template('atividade1.html')
 
 
 @app.route('/atividade2-WR',methods=['POST', 'GET'])
+@token_validation
 def reading_and_writing():
 
 
@@ -52,6 +54,7 @@ def reading_and_writing():
 
 
 @app.route('/mensages',methods=['GET'])
+@token_validation
 def mensages():
     return usuario_teste.paulo
 
@@ -65,6 +68,7 @@ def load():
 
 
 @app.route('/atividade2-conteudo')
+@token_validation
 def conteudo():
     return render_template('content.html')
 
@@ -75,17 +79,15 @@ def autenticacao():
 
 
 
-@app.route('/login',methods=['POST'])
+@app.route('/login',methods=['POST','GET'])
 def login():
     user = request.form.get('usuario')
     senha = request.form.get('senha')
 
     erro = None
 
-    if  senha == '123' and user =='paulo1':
-        token = jwt.encode({'user' : user, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=5)},app.config['SECRET_KEY'])
-        response = make_response(render_template('pagina-protegida.html'))
-        response.headers['authorization'] = 'Bearer ' + token.decode('UTF-8')
+    if  senha == '123' and user =='paulo':
+        token = jwt.encode({'user' : user, 'exp':datetime.datetime.utcnow()+datetime.timedelta(seconds=5)},app.config['SECRET_KEY'])
         return render_template('pagina-protegida.html', token = token.decode('UTF-8'))
 
     else:
