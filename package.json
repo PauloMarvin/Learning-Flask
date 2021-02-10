@@ -1,0 +1,24 @@
+{
+  "name": "Learning-Flask",
+  "version": "1.0.0",
+  "description": "Project for learning the flask framework",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PauloMarvin/Learning-Flask.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PauloMarvin/Learning-Flask/issues"
+  },
+  "homepage": "https://github.com/PauloMarvin/Learning-Flask#readme",
+  "devDependencies": {
+    "electron": "^11.2.3"
+  }
+}
