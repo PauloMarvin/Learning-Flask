@@ -16,7 +16,7 @@ def token_validation(f):
             return ({'mensages': 'Sem token'}),403
 
         try:
-            data = jwt.decode(token,app.config['SECRET_KEY'])
+            jwt.decode(token, app.config['SECRET_KEY'])
         except:
             return jsonify({'mensages': 'token nao correspondente ' }), 403
 
