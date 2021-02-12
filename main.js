@@ -1,11 +1,32 @@
 const {app, BrowserWindow} = require('electron')
 
+
  function createWindow () {
-    window = new BrowserWindow({width: 800, height: 600})
+     const window = new BrowserWindow({
+         width : 900,
+         height : 600,
+
+         webPreferences: {
+             contextIsolation: true
+         }
+     })
     window.loadFile('index.html')
+
+
+
+
   }
 
+
+
+
+
    app.on('ready', createWindow)
+
+
+
+
+
 
 app.on('window-all-closed', () => {
     // On macOS it is common for applications and their menu bar
@@ -14,3 +35,17 @@ app.on('window-all-closed', () => {
       app.quit()
     }
   })
+
+let {PythonShell} = require('python-shell');
+
+
+
+
+
+PythonShell.run('run.py',  function  (err, results)  {
+ if  (err)  console.log(err);
+});
+
+
+
+

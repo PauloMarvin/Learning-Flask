@@ -16,7 +16,7 @@ def token_validation(f):
             return ({'mensages': 'Sem token'}),403
 
         try:
-            jwt.decode(token, app.config['SECRET_KEY'])
+           data = jwt.decode(token, app.config['SECRET_KEY'])
         except:
             return jsonify({'mensages': 'token nao correspondente ' }), 403
 
@@ -87,7 +87,7 @@ def login():
     erro = None
 
     if  senha == '123' and user =='paulo':
-        token = jwt.encode({'user' : user, 'exp':datetime.datetime.utcnow()+datetime.timedelta(seconds=5)},app.config['SECRET_KEY'])
+        token = jwt.encode({'user' : user, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=5)},app.config['SECRET_KEY'])
         return render_template('pagina-protegida.html', token = token.decode('UTF-8'))
 
     else:
