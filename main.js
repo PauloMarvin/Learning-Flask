@@ -1,4 +1,14 @@
+ let {PythonShell} = require('python-shell');
+
+PythonShell.run('run.py',  function  (err, results)  {
+ if  (err)  console.log(err);
+
+ console.log('results', results);
+});
+
+
 const {app, BrowserWindow} = require('electron')
+
 
 
  function createWindow () {
@@ -10,22 +20,16 @@ const {app, BrowserWindow} = require('electron')
              contextIsolation: true
          }
      })
-    window.loadFile('index.html')
+    window.loadFile("" +
+        "index.html")
+    }
 
-
-
-
-  }
 
 
 
 
 
    app.on('ready', createWindow)
-
-
-
-
 
 
 app.on('window-all-closed', () => {
@@ -36,15 +40,18 @@ app.on('window-all-closed', () => {
     }
   })
 
-let {PythonShell} = require('python-shell');
 
+ const { ipcMain } = require('electron')
 
+ipcMain.on(`asynchronous`, (event, arg) => {
+  console.log(`asynchronous`,arg)
+  event.sender.send("async",'IPC MAIN ASYNC')
+})
 
-
-
-PythonShell.run('run.py',  function  (err, results)  {
- if  (err)  console.log(err);
-});
+ipcMain.on('synchronous', (event, arg) => {
+  console.log('synchronous',arg) // prints "ping"
+  event.returnValue = 'pong'
+})
 
 
 

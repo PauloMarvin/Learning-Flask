@@ -1,10 +1,12 @@
-from flask import render_template,request,jsonify,make_response,Flask,Response
-import flask
-import jwt
 import datetime
+from functools import wraps
+
+import jwt
+from flask import render_template, request, jsonify
+
 from app import app
-from functools import  wraps
 from ..models import usuario_teste
+
 
 def token_validation(f):
     @wraps(f)
@@ -14,6 +16,7 @@ def token_validation(f):
 
         if not token:
             return ({'mensages': 'Sem token'}),403
+
 
         try:
            data = jwt.decode(token, app.config['SECRET_KEY'])

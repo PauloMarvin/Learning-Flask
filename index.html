@@ -6,9 +6,38 @@
 </head>
 <body>
 
-<h1>This is a test</h1>
+<h1>Hello World</h1>
 
-<a href="http://127.0.0.1:5000/">Go</a>
+
+    <script>
+        const {ipcMain, ipcRenderer} = require('electron')
+        const fs = require('fs')
+
+
+        var content =  fs.readFileSync(__dirname + '/index.html')
+        document.querySelector('#teste').innerText = content
+
+        let result = ipcRenderer.sendSync("sync-ipcmain",'IPC RENDER')
+        console.log(result);
+
+    </script>
+
+
+
+<div id="teste"></div>
+
+<div>
+    <a href="http://127.0.0.1:5000/pagina-login">Ir para Login</a>
+</div>
+
+<div>
+    <a href="http://127.0.0.1:5000/">Ir para index</a>
+</div>
+
+
+
+
+
 
 </body>
 </html>
